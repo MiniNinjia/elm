@@ -80,7 +80,7 @@ export class HomePage {
   };
   loading = true;
   local: any;
-
+  address: any;
   @ViewChild('rootTabs') tabRef: any;
 
   constructor(public navCtrl: NavController,
@@ -101,6 +101,7 @@ export class HomePage {
 
 
   ionViewDidLoad() {
+    this.address = JSON.parse(localStorage.getItem('address'));
     this.isp.index_entry((result) => {
       let data = JSON.parse(result._body);
       let arr = [];
@@ -114,11 +115,6 @@ export class HomePage {
     });
     this.getAllRestaurants(0, 5, function () {
     });
-    this.local = localStorage.getItem('local');
-    if (!this.local) {
-
-    }
-    console.log(this.local);
   }
 
   getAllRestaurants(offset, limit, callback) {
@@ -170,7 +166,13 @@ export class HomePage {
   }
 
   city() {
-    let modelPage = this.modalCtrl.create(CityPage)
-    modelPage.present();
+    this.navCtrl.push(CityPage, {callback: this.getData})
   }
+
+  getData = () => {
+    return new Promise((resolve, reject) => {
+      this.address =JSON.parse(localStorage.getItem('address'));
+      resolve();
+    });
+  };
 }

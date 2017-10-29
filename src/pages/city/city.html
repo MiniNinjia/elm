@@ -35,7 +35,7 @@
 
     </ion-item>
     <ion-item style=" border-bottom: solid 1px #c6c8cb;">
-      <ion-row (click)="goo()">
+      <ion-row (click)="goo(cityData?.guess)">
         <ion-col col-6 class="city">{{cityData.guess?.name}}</ion-col>
         <ion-col col-6>
           <button style="" class="lll">
@@ -52,20 +52,20 @@
       </ion-item>
 
       <ion-row style="">
-        <ion-col col-3 class="gezi" *ngFor="let item of cityData?.hot;let i=index">{{item?.name}}</ion-col>
+        <ion-col col-3 class="gezi" *ngFor="let item of cityData?.hot;let i=index" (click)="goo(item)">{{item?.name}}</ion-col>
       </ion-row>
     </ion-item-group>
     <ion-item-divider>
     </ion-item-divider>
 
 
-    <ion-item-group style="" *ngFor="let data of cityData?.group;let j=index">
+    <ion-item-group style="" *ngFor="let data of cityData?.group;let j=index" >
       <ion-item style="border-bottom: solid 1px #c6c8cb ">
         <h2 style="padding-left: 10px;color: #333">{{data?.i}}(按字母排序)</h2>
       </ion-item>
 
       <ion-row style="">
-        <ion-col col-3 class="all" *ngFor="let data1 of data.sub;let i=index">{{data1?.name}}</ion-col>
+        <ion-col col-3 class="all" *ngFor="let data1 of data.sub;let i=index" (click)="goo(data1)">{{data1?.name}}</ion-col>
         <!--<ion-col col-3 class="gezi">哈尔滨</ion-col>-->
         <!--<ion-col col-3 class="gezi">南京</ion-col>-->
         <!--<ion-col col-3 class="gezi">广州</ion-col>-->
