@@ -42,5 +42,4 @@ export class AddNewAddressPage {
       this.navCtrl.pop()
     });
   }
-
 }

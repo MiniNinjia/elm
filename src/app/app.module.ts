@@ -129,6 +129,7 @@ import {RestaurantComponent} from '../components/restaurant/restaurant';
     RestaurantListPage,
     SelAddressPage,
     AddNewAddressPage
+    
   ],
   providers: [
     StatusBar,
