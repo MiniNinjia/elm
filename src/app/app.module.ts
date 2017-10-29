@@ -37,6 +37,8 @@ import {FoodsPage} from '../pages/foods/foods'
 import {PayPage} from '../pages/pay/pay'
 import {SelAddressPage} from '../pages/sel-address/sel-address'
 import {AddNewAddressPage} from '../pages/add-new-address/add-new-address'
+import {CityPage} from '../pages/city/city'
+import {CitydetailPage} from '../pages/citydetail/citydetail'
 
 
 
@@ -51,6 +53,8 @@ import { AddToCartProvider } from '../providers/add-to-cart/add-to-cart';
 
 import {MyComponent} from '../components/my/my';
 import {RestaurantComponent} from '../components/restaurant/restaurant';
+import { CityServiceProvider } from '../providers/city-service/city-service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -78,6 +82,9 @@ import {RestaurantComponent} from '../components/restaurant/restaurant';
     SearchPage,
     ShopPage,
     ShopCartPage,
+    FoodsPage,
+    CityPage,
+    CitydetailPage,
     MyComponent,
     RestaurantComponent,
     RestaurantListPage,
@@ -128,8 +135,12 @@ import {RestaurantComponent} from '../components/restaurant/restaurant';
     RestaurantComponent,
     RestaurantListPage,
     SelAddressPage,
+    AddNewAddressPage,
+    FoodsPage,
+    CityPage,
+    CitydetailPage,
     AddNewAddressPage
-    
+
   ],
   providers: [
     StatusBar,
@@ -141,10 +152,16 @@ import {RestaurantComponent} from '../components/restaurant/restaurant';
     ExplainServiceProvider,
     GlobleServiceProvider,
     RestaurantProvider,
+
+    RestaurantProvider,
     IndexServiceProvider,
     SearchProvider,
-    AddToCartProvider
+    AddToCartProvider,
+    SearchProvider,
+    CityServiceProvider
   ]
+
+
 })
 export class AppModule {
 }

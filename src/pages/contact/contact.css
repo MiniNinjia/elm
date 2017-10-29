@@ -1,0 +1,23 @@
+page-contact .wait {
+  float: right; }
+page-contact .time {
+  margin-top: 10px; }
+page-contact .line1 {
+  border-bottom: solid 1px #e7e9ec; }
+page-contact .line2 {
+  border-bottom: solid 1px #e7e9ec;
+  padding-bottom: 15px;
+  margin-top: 15px; }
+page-contact .money {
+  float: right;
+  color: orange; }
+page-contact .btn {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid orange;
+  margin-top: 10px;
+  float: right; }
+
+/*# sourceMappingURL=contact.css.map */

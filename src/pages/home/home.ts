@@ -8,6 +8,7 @@ import {RegistPage} from "../regist/regist";
 import {ItemsPage} from "../items/items";
 import {DetailsPage} from "../details/details";
 import {FoodsPage} from "../foods/foods";
+import {CityPage} from "../city/city";
 import {SearchPage} from '../search/search'
 import {TabsPage} from '../tabs/tabs'
 
@@ -79,6 +80,7 @@ export class HomePage {
   };
   loading = true;
   local: any;
+
   @ViewChild('rootTabs') tabRef: any;
 
   constructor(public navCtrl: NavController,
@@ -159,6 +161,16 @@ export class HomePage {
 
   foods() {
     let modelPage = this.modalCtrl.create(FoodsPage);
+    modelPage.present();
+  }
+
+  details() {
+    let modelPage = this.modalCtrl.create(DetailsPage)
+    modelPage.present();
+  }
+
+  city() {
+    let modelPage = this.modalCtrl.create(CityPage)
     modelPage.present();
   }
 }

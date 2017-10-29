@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,uBAAO;EACL,WAAW,EAAC,GAAG;EACf,YAAY,EAAE,GAAG;EACjB,gBAAgB,EAAC,KAAK;EACtB,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,iBAAiB;EACzB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;AAEX,wBAAQ;EACN,UAAU,EAAE,IAAI",
+"sources": ["citydetail.scss"],
+"names": [],
+"file": "citydetail.css"
+}
