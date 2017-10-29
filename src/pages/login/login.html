@@ -33,11 +33,14 @@
 
         <ion-item>
           <ion-input type="password" placeholder="请输入密码" [formControl]="password" clearInput=true></ion-input>
-          <ion-toggle disabled checked="true">abc...</ion-toggle>
         </ion-item>
         <ion-label *ngIf="password.hasError('required') && password.touched" class="error-message">* 请输入密码</ion-label>
         <ion-label *ngIf="(password.hasError('minlength')) && password.touched" class="error-message">* 密码长度最少为六位
         </ion-label>
+        <ion-item>
+          <ion-input type="number" [formControl]="code"></ion-input>
+          <img src="{{codeImg}}" (click)="getcode()">
+        </ion-item>
       </form>
     </ion-col>
   </ion-row>
@@ -48,7 +51,7 @@
     注册过的用户可凭账号密码登录
   </p>
   <div padding>
-    <button ion-button full color="secondary" type="submit" [disabled]="!loginForm.valid">登陆</button>
+    <button ion-button full color="secondary" type="submit" [disabled]="!loginForm.valid" (click)="login()">登陆</button>
   </div>
   <p style="text-align: right;color: #7d9fdd">重置密码？</p>
   <!--<ion-footer >-->

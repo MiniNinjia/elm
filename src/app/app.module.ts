@@ -11,7 +11,6 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 
-
 import {AboutPage} from '../pages/about/about';
 import {ContactPage} from '../pages/contact/contact';
 import {HomePage} from '../pages/home/home';
@@ -39,8 +38,8 @@ import {SelAddressPage} from '../pages/sel-address/sel-address'
 import {AddNewAddressPage} from '../pages/add-new-address/add-new-address'
 import {CityPage} from '../pages/city/city'
 import {CitydetailPage} from '../pages/citydetail/citydetail'
-
-
+import {OrderdetailPage} from '../pages/orderdetail/orderdetail'
+import {PersonalAdddetailaddressPage} from '../pages/personal-adddetailaddress/personal-adddetailaddress'
 
 import {FoodServiceProvider} from '../providers/food-service/food-service';
 import {GlobleServiceProvider} from '../providers/globle-service/globle-service';
@@ -49,11 +48,11 @@ import {UserServiceProvider}from'../providers/user-service/user-service'
 import {RestaurantProvider} from '../providers/restaurant/restaurant';
 import {IndexServiceProvider} from '../providers/index-service/index-service';
 import {SearchProvider} from '../providers/search/search';
-import { AddToCartProvider } from '../providers/add-to-cart/add-to-cart';
+import {AddToCartProvider} from '../providers/add-to-cart/add-to-cart';
 
 import {MyComponent} from '../components/my/my';
 import {RestaurantComponent} from '../components/restaurant/restaurant';
-import { CityServiceProvider } from '../providers/city-service/city-service';
+import {CityServiceProvider} from '../providers/city-service/city-service';
 
 @NgModule({
   declarations: [
@@ -62,7 +61,6 @@ import { CityServiceProvider } from '../providers/city-service/city-service';
     ContactPage,
     HomePage,
     TabsPage,
-    //ShopPage,
     PersonalPage,
     PersonalMessagePage,
     PersonalServePage,
@@ -72,7 +70,6 @@ import { CityServiceProvider } from '../providers/city-service/city-service';
     PersonalQuestionPage,
     PersonalNamePage,
     PayPage,
-    //婷
     ShopPage,
     LoginPage,
     RegistPage,
@@ -90,8 +87,9 @@ import { CityServiceProvider } from '../providers/city-service/city-service';
     RestaurantListPage,
     FoodsPage,
     SelAddressPage,
-    AddNewAddressPage
-
+    AddNewAddressPage,
+    OrderdetailPage,
+    PersonalAdddetailaddressPage,
   ],
   imports: [
     BrowserModule,
@@ -110,7 +108,6 @@ import { CityServiceProvider } from '../providers/city-service/city-service';
     ContactPage,
     HomePage,
     TabsPage,
-    //ShopPage,
     ShopCartPage,
     ShopPage,
     LoginPage,
@@ -121,7 +118,6 @@ import { CityServiceProvider } from '../providers/city-service/city-service';
     SearchPage,
     FoodsPage,
     PayPage,
-    //婷
     ShopPage,
     PersonalPage,
     PersonalMessagePage,
@@ -139,15 +135,15 @@ import { CityServiceProvider } from '../providers/city-service/city-service';
     FoodsPage,
     CityPage,
     CitydetailPage,
-    AddNewAddressPage
-
+    AddNewAddressPage,
+    OrderdetailPage,
+    PersonalAdddetailaddressPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FoodServiceProvider,
-    //GlobleServiceProvider,
     UserServiceProvider,
     ExplainServiceProvider,
     GlobleServiceProvider,

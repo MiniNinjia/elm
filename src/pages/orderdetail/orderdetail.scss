@@ -1,0 +1,22 @@
+page-orderdetail {
+.restaurant_image{
+  border-radius: 360px;
+  border: 1px solid deepskyblue;
+}
+  .state{
+    font-size: 2em;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .button{
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #07acee;
+    margin-left: 20px;
+    color: #07acee;
+    text-align: center;
+    padding-top: 5px;
+  }
+}

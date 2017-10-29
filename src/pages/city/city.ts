@@ -5,7 +5,7 @@ import {HomePage} from "../home/home";
 import {LoginPage} from "../login/login";
 import {CitydetailPage} from "../citydetail/citydetail";
 import {CityServiceProvider} from "../../providers/city-service/city-service";
-
+import {PersonalPage} from '../personal/personal'
 
 /**
  * Generated class for the CityPage page.
@@ -35,6 +35,8 @@ export class CityPage {
   }
 
   ionViewDidLoad() {
+    this.id = localStorage.getItem('userid');
+    console.log(this.id);
     this.fs.getcity('guess', (result) => {
       this.cityData.guess = JSON.parse(result._body);
       this.fs.getcity('hot', (result1) => {
@@ -44,7 +46,7 @@ export class CityPage {
             let data = {
               i: i,
               sub: JSON.parse(result2._body)[i]
-            }
+            };
             this.cityData.group.push(data)
           }
         })
@@ -52,8 +54,8 @@ export class CityPage {
     })
   }
 
-  disMiss() {
-    let modelPage = this.modalCtrl.create(LoginPage);
+  gopersonel() {
+    let modelPage = this.modalCtrl.create(PersonalPage);
     modelPage.present()
   }
 
@@ -61,5 +63,12 @@ export class CityPage {
     let modelPage = this.modalCtrl.create(CitydetailPage, {city: this.cityData.guess});
     modelPage.present()
   }
+
+  gologin() {
+    let modelPage = this.modalCtrl.create(LoginPage);
+    modelPage.present()
+  }
+
+
 
 }

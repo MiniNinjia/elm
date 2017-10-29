@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {CityPage} from "../city/city";
-
+import {UserServiceProvider} from '../../providers/user-service/user-service'
 /**
  * Generated class for the CitydetailPage page.
  *
@@ -21,7 +21,8 @@ export class CitydetailPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private viewCtrl: ViewController) {
+              private viewCtrl: ViewController,
+              public usp: UserServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -31,7 +32,12 @@ export class CitydetailPage {
   disMiss() {
     this.viewCtrl.dismiss();
   }
-  search(){
 
+  search() {
+    if (this.searchText) {
+      this.usp.getsearchaddress(this.city.id, this.searchText).then((data) => {
+        this.result = data;
+      })
+    }
   }
 }

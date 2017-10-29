@@ -20,7 +20,10 @@
         <!--<img class="orderimg" src="../../assets/img/cart_nothing.png">-->
       </ion-col>
       <ion-col col-10 class="line1">
-        <span class="ordertitle">效果演示</span>
+        <span class="ordertitle">效果演示
+        <button style="" class="jump" (click)="jump()">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button></span>
         <span class="wait"> 等待支付</span>
         <div class="time">2017-10-29 10:38</div>
       </ion-col>
@@ -28,27 +31,52 @@
     <ion-row>
       <ion-col col-2></ion-col>
       <ion-col col-10 class="line2">
-        <span class="ordertitle">四川火锅</span>
+        <span class="ordertitle1">四川火锅&nbsp;&nbsp;&nbsp;</span>
+        <span class="count">等2件商品</span>
         <span class="money"> ¥1616.00</span>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col col-2></ion-col>
+      <ion-col col-10 class="nothing">
+        <div class="btn" style="">
+          <span>去支付（还剩01分52秒)</span>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+  <ion-item-divider></ion-item-divider>
 
-
-
-  <!--<ion-list no-lines >-->
-    <!--<ion-item>-->
-    <!--<ion-thumbnail item-start  style="background-color: #9eeeb6">-->
-      <!--<img class="orderimg" src="../../assets/img/cart_nothing.png">-->
-    <!--</ion-thumbnail>-->
-
-      <!--<div class="line2">-->
-        <!--<span class="ordername">四川火锅</span>-->
-        <!--<span class="money">¥1616.00</span>-->
-      <!--</div>-->
-      <!--<div class="line3">-->
-        <!--<div class="btn"></div>-->
-      <!--</div>-->
-    <!--</ion-item>-->
-  <!--</ion-list>-->
+  <ion-grid>
+    <ion-row style="padding-top: 10px">
+      <ion-col col-2>
+        <img src="http://cangdu.org:8001/img/15e386ec1875697.jpeg" class="restaurant_image">
+        <!--<img class="orderimg" src="../../assets/img/cart_nothing.png">-->
+      </ion-col>
+      <ion-col col-10 class="line1">
+        <span class="ordertitle">效果演示
+        <button style="" class="jump" (click)="jump()">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button></span>
+        <span class="wait">支付超时</span>
+        <div class="time">2017-10-29 10:38</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2></ion-col>
+      <ion-col col-10 class="line2">
+        <span class="ordertitle1">四川火锅&nbsp;&nbsp;&nbsp;</span>
+        <span class="count">等2件商品</span>
+        <span class="money"> ¥1616.00</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2></ion-col>
+      <ion-col col-10 class="nothing">
+        <div id="btn1">
+          <span>再来一单</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

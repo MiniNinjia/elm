@@ -36,6 +36,7 @@ export class PersonalMessagePage {
 
   ionViewDidLoad() {
     this.udata=this.navParams.get('udata');
+    //console.log(this.udata);
   }
   ionViewDidEnter(){
   }
@@ -43,10 +44,11 @@ export class PersonalMessagePage {
     this.viewCtrl.dismiss();
   }
   goChangeName(){
- this.navCtrl.push(PersonalNamePage)
+ this.navCtrl.push(PersonalNamePage,{udat:this.udata})
   }
   goChangeAdress(){
-    this.navCtrl.push(PersonalChangeaddresPage);
+    this.navCtrl.push(PersonalChangeaddresPage,{udata:this.udata});
+
   }
   goChangePas(){
     this.navCtrl.push(PersonalPasswordPage);

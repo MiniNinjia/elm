@@ -11,8 +11,11 @@
     <ion-row>
       <ion-col col-6 style="color: white;font-size: 1.5em;">ele.me</ion-col>
       <ion-col col-6 style="text-align: right">
-        <button (click)="disMiss()" style="font-size: 20px;background-color: transparent;color: white;">
+        <button (click)="gopersonel()" *ngIf="id" style="font-size: 20px;background-color: transparent;color: white;">
           <ion-icon name="person"></ion-icon>
+        </button>
+        <button (click)="gologin()" *ngIf="!id" style="font-size: 20px;background-color: transparent;color: white;">
+            登陆|注册
         </button>
       </ion-col>
       <!--</ion-navbar>-->

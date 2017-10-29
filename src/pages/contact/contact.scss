@@ -1,38 +1,70 @@
 page-contact {
 
-  .wait{
+  .wait {
+    font-size: 1.2em;
     float: right;
 
   }
-  .time{
+  .time {
     margin-top: 10px;
-    //padding: 0;
+    color: #cacaca;
   }
-.line1{
+  .line1 {
 
-  border-bottom: solid 1px #e7e9ec;
-  //padding-bottom: 5px;
-  //background-color: #7d9fdd;
-}
-  .line2{
-    //height: 50px;
+    border-bottom: solid 1px #e7e9ec;
+  }
+  .line2 {
     border-bottom: solid 1px #e7e9ec;
     padding-bottom: 15px;
     margin-top: 15px;
   }
-  .money{
+  .nothing {
+    padding-bottom: 15px;
+
+  }
+  .ordertitle1 {
+    float: left;
+  }
+  .count {
+    float: left;
+  }
+  .money {
+    font-size: 1.2em;
+    font-weight: 500;
     float: right;
     color: orange;
 
   }
-  .btn{
-    width: 200px;
+  .btn {
+    width: 180px;
     height: 30px;
     border-radius: 5px;
     background-color: white;
     border: 1px solid orange;
     margin-top: 10px;
     float: right;
+    color: orange;
+    text-align: center;
+    padding-top: 5px;
   }
-
+  .ordertitle {
+    font-size: 1.2em;
+  }
+  #btn1 {
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #07acee;
+    margin-top: 10px;
+    float: right;
+    color: #07acee;
+    text-align: center;
+    padding-top: 5px;
+  }
+  .jump {
+    font-size: 20px;
+    background-color: transparent;
+    color: #e0e0e0;
+  }
 }

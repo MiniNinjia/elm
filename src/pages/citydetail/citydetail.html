@@ -33,14 +33,14 @@
   </ion-item>
 
     <div padding style="padding-top:0;">
-      <button ion-button full color="primary" type="submit" style="border-radius: 5px">提交</button>
+      <button ion-button full color="primary" type="submit" style="border-radius: 5px" (click)="search()">提交</button>
     </div>
   <ion-item-divider style="  border-bottom: solid 1px #c6c8cb;color: #333">搜索历史
   </ion-item-divider>
   <ion-item-group  style="border-bottom: 1px solid #d2d2d2;">
-    <ion-item>
-      <h2 style="color: #333">吴中现代文体中心</h2>
-      <p class="address">江苏省苏州市吴中区宝带东路345</p>
+    <ion-item *ngFor="let item of result" (click)="selAddress(item)">
+      <h2 style="color: #333">{{item?.name}}</h2>
+      <p class="address">{{item?.address}}</p>
     </ion-item>
 
   </ion-item-group>
