@@ -14,7 +14,8 @@ import { IonicPage, NavController, NavParams,ViewController, } from 'ionic-angul
   templateUrl: 'onlinepay.html',
 })
 export class OnlinepayPage {
-
+  choIndex = 0;
+  choIndex1 = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl: ViewController) {
   }
 
@@ -25,6 +26,18 @@ export class OnlinepayPage {
 
     this.viewCtrl.dismiss();
 
+  }
+
+  cho(i) {
+
+    this.choIndex = i;
+    this.choIndex1 = 0;
+  }
+
+  cho1(i){
+
+    this.choIndex1 = i;
+    this.choIndex = 0;
   }
 
 }

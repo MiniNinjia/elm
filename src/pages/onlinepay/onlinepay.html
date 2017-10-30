@@ -38,14 +38,16 @@
         <img src="../../assets/imgs/支付宝.png" height="48" width="48"/>
       </ion-col>
       <ion-col col-3 style="padding-top: 16px;font-size: 1.2em">支付宝</ion-col>
-      <ion-col col-7 style="text-align: right"><ion-icon  class="yes"  name="md-checkmark-circle"></ion-icon></ion-col>
+      <ion-col col-7 style="text-align: right" (click)="cho(i)">
+        <ion-icon  class="yes" [style.color]="choIndex==i?'#4cd964':'#eee'" name="md-checkmark-circle"></ion-icon></ion-col>
     </ion-row>
     <ion-row style="padding-left:16px;border-bottom: solid 1px #e7e9ec;" >
       <ion-col col-2 class="zhifubao">
         <img src="../../assets/imgs/微信.png" height="48" width="48"/>
       </ion-col>
       <ion-col col-3 style="padding-top: 16px;font-size: 1.2em">微信</ion-col>
-      <ion-col col-7 style="text-align: right"><ion-icon  id="no"  name="md-checkmark-circle"></ion-icon></ion-col>
+      <ion-col col-7 style="text-align: right" (click)="cho1(i)">
+        <ion-icon  class="yes"  [style.color]="choIndex1==i?'#4cd964':'#eee'"  name="md-checkmark-circle"></ion-icon></ion-col>
     </ion-row>
   </ion-grid>
   <div padding>
