@@ -33,7 +33,7 @@ export class UserServiceProvider {
     return this.http.get(this._url + '/v2/signout').toPromise().then((data) => data)
   }
 
-    //获取用户信息
+  //获取用户信息
   getUsermessage(id): Promise<any> {
     return this.http.get(this._url + '/v1/user/' + id).toPromise().then((data) => data)
   }
@@ -42,7 +42,6 @@ export class UserServiceProvider {
   getUseraddress(id): Promise<any> {
     return this.http.get(this._url + '/v1/users/' + id + '/addresses').toPromise().then((data) => data)
   }
-
 
 //  修改用户密码
   changePassword(passdata): Promise<any> {

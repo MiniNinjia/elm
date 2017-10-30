@@ -26,11 +26,13 @@ import {UserServiceProvider}from'../../providers/user-service/user-service'
 export class PersonalPage {
   userData:any;
   uid:any
+  lenght:any;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private viewCtrl:ViewController,
-              public modalCtrl:ModalController,
-              private userSer:UserServiceProvider) {
+              private viewCtrl: ViewController,
+              public modalCtrl: ModalController,
+              private userSer: UserServiceProvider) {
 
 
   }
@@ -46,18 +48,19 @@ export class PersonalPage {
       this.navCtrl.push(LoginPage);
     }
   };
-goto(){
-  this.navCtrl.push(TabsPage);
-  this.viewCtrl.dismiss();
+
+  goto() {
+    this.viewCtrl.dismiss();
   }
-  goOrder(){
+
+  goOrder() {
     this.navCtrl.push(ContactPage);
     this.viewCtrl.dismiss();
   }
-  goServe(){
-    let modelPage=this.modalCtrl.create(PersonalServePage);
+
+  goServe() {
+    let modelPage = this.modalCtrl.create(PersonalServePage);
     modelPage.onDidDismiss(() => {
-      //console.log('hfjkh');
     });
 
     modelPage.present();

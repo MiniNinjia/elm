@@ -15,7 +15,8 @@
         </button>
       </ion-col>
       <ion-col col-4 id="shoptitle">{{city?.name}}</ion-col>
-      <ion-col col-4 id="qiehuan" (click)="disMiss()" style="  font-size:1.1em;text-align: center;color: white;margin-top: 5px;text-align: right">
+      <ion-col col-4 id="qiehuan" (click)="disMiss()"
+               style="  font-size:1.1em;text-align: center;color: white;margin-top: 5px;text-align: right">
         切换城市
       </ion-col>
       <!--</ion-navbar>-->
@@ -27,26 +28,20 @@
 <ion-content>
   <ion-item-divider>
   </ion-item-divider>
-<ion-list no-lines style="border-bottom: 1px solid #d2d2d2;">
-  <ion-item>
-    <input type="text" placeholder="请输入学校、商务楼、地址" class="search"  [(ngModel)]="searchText">
-  </ion-item>
+  <ion-list no-lines style="border-bottom: 1px solid #d2d2d2;">
+    <ion-item>
+      <input type="text" placeholder="请输入学校、商务楼、地址" class="search" [(ngModel)]="searchText">
+    </ion-item>
 
     <div padding style="padding-top:0;">
       <button ion-button full color="primary" type="submit" style="border-radius: 5px" (click)="search()">提交</button>
     </div>
-  <ion-item-divider style="  border-bottom: solid 1px #c6c8cb;color: #333">搜索历史
-  </ion-item-divider>
-  <ion-item-group  style="border-bottom: 1px solid #d2d2d2;">
-    <ion-item *ngFor="let item of result" (click)="selAddress(item)">
-      <h2 style="color: #333">{{item?.name}}</h2>
-      <p class="address">{{item?.address}}</p>
-    </ion-item>
-
-  </ion-item-group>
-  <ion-item style="">
-    <div style="text-align: center;color: #333">清空所有</div>
-  </ion-item>
-</ion-list>
+    <ion-item-group style="border-bottom: 1px solid #d2d2d2;">
+      <ion-item *ngFor="let item of result" (click)="selAddress(item)">
+        <h2 style="color: #333">{{item?.name}}</h2>
+        <p class="address">{{item?.address}}</p>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 
 </ion-content>

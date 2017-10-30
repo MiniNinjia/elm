@@ -7,9 +7,10 @@
 <ion-header>
   <ion-grid>
     <ion-row>
-    <ion-col col-5 >
-      <ion-icon  name="ios-arrow-back" style="font-size: 3rem;font-weight:400;color: white" (click)="goto()"></ion-icon>
-    </ion-col>
+      <ion-col col-5>
+        <ion-icon name="ios-arrow-back" style="font-size: 3rem;font-weight:400;color: white" (click)="goto()"
+                  *ngIf="length>1"></ion-icon>
+      </ion-col>
       <ion-col col-7 style="font-size: 1.15em;font-weight:600;color: white"> 我的</ion-col>
     </ion-row>
   </ion-grid>

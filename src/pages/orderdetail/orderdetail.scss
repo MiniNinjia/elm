@@ -4,9 +4,9 @@ page-orderdetail {
   border: 1px solid deepskyblue;
 }
   .state{
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 600;
-    margin-left: 5px;
+    text-align: center;
   }
   .button{
     width: 80px;
@@ -18,5 +18,16 @@ page-orderdetail {
     color: #07acee;
     text-align: center;
     padding-top: 5px;
+  }
+  .return{
+    float: right;
+  }
+  .grid{
+    padding: 0;
+  }
+  .totalmoney{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: orange;
   }
 }
