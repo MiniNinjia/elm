@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController,ModalController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
 import {PersonalAdddetailaddressPage}from'../personal-adddetailaddress/personal-adddetailaddress'
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {UserServiceProvider}from'../../providers/user-service/user-service'
@@ -17,10 +17,10 @@ import {from} from "rxjs/observable/from";
   templateUrl: 'personal-addadres.html',
 })
 export class PersonalAddadresPage {
-  cid:any;
-  adsname:any = {};
-  user_id:any;
-  uaddres:any;
+  cid: any;
+  adsname: any = {};
+  user_id: any;
+  uaddres: any;
   addres = {
     name: null,
     user_id: null,
@@ -34,13 +34,14 @@ export class PersonalAddadresPage {
     poi_type: null,
     tag_type: null
   };
-  callback:any;
-  constructor(public navCtrl:NavController,
-              public navParams:NavParams,
-              public modalCtrl:ModalController,
-              public viewCtrl:ViewController,
-              private formBuilder:FormBuilder,
-              public userServe:UserServiceProvider) {
+  callback: any;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public modalCtrl: ModalController,
+              public viewCtrl: ViewController,
+              private formBuilder: FormBuilder,
+              public userServe: UserServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -48,11 +49,11 @@ export class PersonalAddadresPage {
     this.cid = this.navParams.get('cid');
     this.uaddres = this.navParams.get('uadres');
     this.user_id = localStorage.getItem('userid');
-    this.callback=this.navParams.get('callback');
+    this.callback = this.navParams.get('callback');
   }
 
   goto() {
-    this.callback().then(()=>{
+    this.callback().then(() => {
       this.navCtrl.pop();
     })
   }
@@ -71,11 +72,12 @@ export class PersonalAddadresPage {
     this.addres.sex = '1';
     this.addres.poi_type = '0';
     this.addres.tag_type = '2';
-    this.addres.user_id = localStorage .getItem('userid');
-    this.userServe.addadres(this.user_id).then((data) => {
-      this.uaddres.push(this.addres)
+    this.addres.user_id = localStorage.getItem('userid');
+    this.userServe.addadres(this.user_id, this.addres).then((data) => {
+      if (data.status == 1) {
+        this.goto()
+      }
     });
-    console.log(this.uaddres);
   }
 
 }

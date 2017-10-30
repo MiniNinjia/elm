@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
 import {UserServiceProvider}from'../../providers/user-service/user-service'
 import {PersonalAddadresPage}from'../personal-addadres/personal-addadres'
 /**
@@ -15,19 +15,19 @@ import {PersonalAddadresPage}from'../personal-addadres/personal-addadres'
   templateUrl: 'personal-adddetailaddress.html',
 })
 export class PersonalAdddetailaddressPage {
-  cid:any;
-  addres:any
+  cid: any;
+  addres: any
   flag = 0;
 
-  constructor(public navCtrl:NavController,
-              public navParams:NavParams,
-              public viewCtrl:ViewController,
-              public modalCtrl:ModalController,
-              private userSer:UserServiceProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public viewCtrl: ViewController,
+              public modalCtrl: ModalController,
+              private userSer: UserServiceProvider) {
   }
 
   ionViewDidLoad() {
-    this.cid=localStorage.getItem('cityid') || null;
+    this.cid = localStorage.getItem('cityid') || null;
     this.flag = 0;
   }
 
@@ -37,9 +37,8 @@ export class PersonalAdddetailaddressPage {
 
   searchads(ads) {
     if (ads) {
-      this.userSer.getsearchaddress(this.cid, ads).then((data)=> {
+      this.userSer.getsearchaddress(this.cid, ads).then((data) => {
         this.addres = data;
-        console.log(this.cid);
       });
       this.flag = 1;
     }

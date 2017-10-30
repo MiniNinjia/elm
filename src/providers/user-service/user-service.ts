@@ -15,7 +15,7 @@ import {CookieService} from 'angular2-cookie/services/cookies.service';
 @Injectable()
 export class UserServiceProvider {
   _url = this.glo.serverUrl;
-  _uploadUrl=this.glo.uploadUrl;
+  _uploadUrl = this.glo.uploadUrl;
 
   constructor(private http: HttpClient,
               private _cookieService: CookieService,
@@ -32,7 +32,6 @@ export class UserServiceProvider {
   getUseraddress(id): Promise<any> {
     return this.http.get(this._url + '/v1/users/' + id + '/addresses').toPromise().then((data) => data)
   }
-
 
 
 //  修改用户密码
@@ -54,26 +53,26 @@ export class UserServiceProvider {
   }
 
 //  添加收货地址
-//  http://cangdu.org:8001/v1/users/:user_id/addresses
-  addadres(id) {
-    return this.http.post(this._url + '/v1/users/', {} + id + '/addresses').toPromise().then((data) => data)
+  addadres(id,data) {
+    return this.http.post(this._url + '/v1/users/' + id + '/addresses', data).toPromise().then((data) => data)
   }
 
   getOrderList(userid, offset) {
-
     return this.http.get(this._url + '/bos/v2/users/' + userid + '/orders?limit=10&offset=' + offset).toPromise().then((data) => data)
-
   }
+
   //删除收货地址
   //http://cangdu.org:8001/v1/users/:user_id/addresses/:address_id
-  deladdres(id,adresid){
-    return this.http.delete(this._url + '/v1/users/' + id + '/addresses/'+adresid).toPromise().then((data) => data)
+  deladdres(id, adresid) {
+    return this.http.delete(this._url + '/v1/users/' + id + '/addresses/' + adresid).toPromise().then((data) => data)
 
   }
-//  上传图片
-//  http://cangdu.org:8001/v1/addimg/:type
-  uplodeimg(type){
-  return this.http.post(this._uploadUrl+'/v1/addimg/'+ type)
+
+  singout() {
+    return this.http.get(this._url + '/v2/signout').toPromise().then((data) => data)
   }
 
+  login(data) {
+    return this.http.post(this._url + '/v2/login', data, {withCredentials: true}).toPromise().then((data) => data)
+  }
 }

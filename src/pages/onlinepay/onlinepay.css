@@ -9,9 +9,9 @@ page-onlinepay .yes {
   color: #6fd700;
   font-size: 2em;
   margin-right: 16px; }
-page-onlinepay #no {
+page-onlinepay .no {
   padding-top: 16px;
-  color: #9c9c9c;
+  color: #f5f5f5;
   font-size: 2em;
   margin-right: 16px; }
 page-onlinepay .grid {

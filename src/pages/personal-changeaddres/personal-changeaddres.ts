@@ -18,23 +18,22 @@ import {from} from "rxjs/observable/from";
   providers: [UserServiceProvider]
 })
 export class PersonalChangeaddresPage {
-  udata:any;
-  uid:any;
-  uaddres:any;
-  cityid:any;
+  udata: any;
+  uid: any;
+  uaddres: any;
+  cityid: any;
   flag = true;
-  constructor(public navCtrl:NavController,
-              public navParams:NavParams,
-              public viewCtrl:ViewController,
-              private userSer:UserServiceProvider) {
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public viewCtrl: ViewController,
+              private userSer: UserServiceProvider) {
   }
 
   ionViewDidLoad() {
     this.udata = this.navParams.get('udata');
-    console.log(this.udata);
     this.userSer.getUseraddress(this.udata.user_id).then((data) => {
       this.uaddres = data;
-      console.log(this.uaddres)
     });
   }
 
@@ -46,7 +45,7 @@ export class PersonalChangeaddresPage {
     this.uid = this.udata.id;
     console.log(this.uid);
     this.cityid = this.uaddres[0].city_id;
-    this.navCtrl.push(PersonalAddadresPage, {cid: this.cityid, uadres: this.uaddres,callback:this.getdata})
+    this.navCtrl.push(PersonalAddadresPage, {cid: this.cityid, uadres: this.uaddres, callback: this.getdata})
   }
 
   over() {
@@ -54,14 +53,18 @@ export class PersonalChangeaddresPage {
   }
 
   deladre(i) {
-    this.userSer.deladdres(this.udata.id, this.uaddres[i].id).then((data)=> {
+    this.userSer.deladdres(this.udata.id, this.uaddres[i].id).then((data) => {
       this.uaddres.splice(i, 1);
       console.log(data);
     });
   }
-  getdata=()=>{
-    return new Promise((resolve,reject)=>{
 
+  getdata = () => {
+    return new Promise((resolve, reject) => {
+      this.udata = this.navParams.get('udata');
+      this.userSer.getUseraddress(this.udata.user_id).then((data) => {
+        this.uaddres = data;
+      });
       resolve();
     })
   }

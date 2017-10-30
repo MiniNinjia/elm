@@ -36,7 +36,6 @@ export class CityPage {
   }
 
   ionViewDidLoad() {
-    this.id = localStorage.getItem('userid');
     this.callback = this.navParams.get('callback');
     this.fs.getcity('guess', (result) => {
       this.cityData.guess = JSON.parse(result._body);
@@ -54,7 +53,10 @@ export class CityPage {
       })
     })
   }
-
+  ionViewDidEnter(){
+    this.id = localStorage.getItem('userid');
+    console.log(this.id);
+  }
   gopersonel() {
     this.navCtrl.push(PersonalPage)
   }

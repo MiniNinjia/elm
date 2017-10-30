@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
 import {TabsPage}from'../../pages/tabs/tabs'
 import {from} from "rxjs/observable/from";
 import {PersonalMessagePage}from'../../pages/personal-message/personal-message'
@@ -8,8 +8,9 @@ import {ContactPage}from'../../pages/contact/contact'
 import {PersonalServePage}from'../../pages/personal-serve/personal-serve'
 import {PersonalChangeaddresPage}from'../personal-changeaddres/personal-changeaddres'
 import {LoginPage}from'../../pages/login/login'
-import { Storage } from '@ionic/storage';
-import {UserServiceProvider}from'../../providers/user-service/user-service'
+import {Storage} from '@ionic/storage';
+import {UserServiceProvider}from'../../providers/user-service/user-service';
+
 /**
  * Generated class for the PersonalPage page.
  *
@@ -21,7 +22,7 @@ import {UserServiceProvider}from'../../providers/user-service/user-service'
 @Component({
   selector: 'page-personal',
   templateUrl: 'personal.html',
-  providers:[UserServiceProvider]
+  providers: [UserServiceProvider]
 })
 export class PersonalPage {
   userData: any;
@@ -38,14 +39,13 @@ export class PersonalPage {
   ionViewDidLoad() {
     this.uid = localStorage.getItem('userid');
     this._lenght = this.navCtrl.length();
-
-    if(this.uid){
+    if (this.uid) {
       this.userSer.getUsermessage(this.uid).then((data) => {
-        this.userData=data;
+        this.userData = data;
       })
     }
     else {
-      this.navCtrl.push(LoginPage);
+      this.login();
     }
   };
 
@@ -65,14 +65,29 @@ export class PersonalPage {
 
     modelPage.present();
   }
+
   goUserMes() {
-
-    let modelPage = this.modalCtrl.create(PersonalMessagePage, {udata: this.userData});
-    modelPage.onDidDismiss(() => {
-      console.log('hfjkh');
-    });
-
-    modelPage.present();
+    if(this.uid){
+      let modelPage = this.modalCtrl.create(PersonalMessagePage, {udata: this.userData});
+      modelPage.onDidDismiss(() => {
+      });
+      modelPage.present();
+    }else{
+      this.login();
+    }
   }
 
+  login() {
+    this.navCtrl.push(LoginPage, {callback: this.getData});
+  }
+
+  getData = () => {
+    return new Promise((resolve, reject) => {
+      this.uid = localStorage.getItem('userid');
+      this.userSer.getUsermessage(this.uid).then((data) => {
+        this.userData = data;
+      });
+      resolve();
+    });
+  }
 }

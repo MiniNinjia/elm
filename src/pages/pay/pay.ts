@@ -5,7 +5,8 @@ import {
   NavParams,
   ModalController,
   ViewController,
-  ActionSheetController
+  ActionSheetController,
+  ToastController
 } from 'ionic-angular';
 import {AddToCartProvider} from '../../providers/add-to-cart/add-to-cart';
 import {UserServiceProvider} from '../../providers/user-service/user-service';
@@ -19,6 +20,7 @@ import {
   keyframes
 } from '@angular/animations';
 import {OnlinepayPage} from "../onlinepay/onlinepay";
+import {LoginPage} from '../login/login'
 /**
  * Generated class for the PayPage page.
  *
@@ -61,34 +63,48 @@ export class PayPage {
               public atcp: AddToCartProvider,
               public usp: UserServiceProvider,
               public modalCtrl: ModalController,
+              public toastCtrl:ToastController,
               public actionSheetCtrl: ActionSheetController) {
 
   }
-
+  ionViewDidEnter(){
+    this.userid = localStorage.getItem('userid');
+  }
   ionViewDidLoad() {
     this._data = this.navParams.get('data');
     this._id = this.navParams.get('id');
-    ////////////////////////////////////////////////////
-    localStorage.setItem('userid', '7378');
     this.userid = localStorage.getItem('userid');
-    let postdata = {
-      come_from: 'web',
-      restaurant_id: this._id,
-      geohash: JSON.parse(localStorage.getItem('address')).geohash,
-      entities: [this._data]
-    };
+    if(this.userid){
+      let postdata = {
+        come_from: 'web',
+        restaurant_id: this._id,
+        geohash: JSON.parse(localStorage.getItem('address')).geohash,
+        entities: [this._data]
+      };
 
-    this.atcp.checkout(postdata).then((result) => {
-      this.result = JSON.parse(result._body);
-    });
+      this.atcp.checkout(postdata).then((result) => {
+        this.result = JSON.parse(result._body);
+      });
 
-    this.usp.getUseraddress(this.userid).then((data) => {
-      this.address = data;
-      this._Address = this.address[0];
-      console.log(this._Address)
-    })
+      this.usp.getUseraddress(this.userid).then((data) => {
+        this.address = data;
+        this._Address = this.address[0];
+      })
+    }else{
+      this.presentToast('未登录。请先登陆')
+    }
   }
-
+  presentToast(message) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 1500,
+      position: 'middle'
+    });
+    toast.onDidDismiss(() => {
+      this.navCtrl.push(LoginPage,{callback: this.getLogin})
+    });
+    toast.present();
+  }
   selPay(bool) {
     this.selPayType = bool;
   }
@@ -148,4 +164,10 @@ export class PayPage {
     });
     actionSheet.present();
   }
+  getLogin = () => {
+    return new Promise((resolve, reject) => {
+
+      resolve();
+    });
+  };
 }

@@ -4,7 +4,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {ToastController} from 'ionic-angular';
- //import { Storage } from '@ionic/storage';
+//import { Storage } from '@ionic/storage';
 import {UserServiceProvider} from '../../providers/user-service/user-service'
 
 //
@@ -21,14 +21,15 @@ import {UserServiceProvider} from '../../providers/user-service/user-service'
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-   providers:[UserServiceProvider]
+  providers: [UserServiceProvider]
 })
 export class LoginPage {
   loginForm: FormGroup;
   username: any;
   password: any;
-  code: any;
+  captcha_code: any;
   codeImg: any;
+  callback: any;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -38,42 +39,58 @@ export class LoginPage {
               private formBuilder: FormBuilder,
               private userServe: UserServiceProvider) {
     this.loginForm = formBuilder.group({
-      telephone: ['', Validators.compose([Validators.minLength(11), Validators.maxLength(11), Validators.required, Validators.pattern("^(13[0-9]|15[012356789]|17[03678]|18[0-9]|14[57])[0-9]{8}$")])],
+      username: ['', Validators.compose([Validators.minLength(11), Validators.maxLength(11), Validators.required, Validators.pattern("^(13[0-9]|15[012356789]|17[03678]|18[0-9]|14[57])[0-9]{8}$")])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      code: ['', Validators.compose([Validators.required])]
+      captcha_code: ['', Validators.compose([Validators.required])]
     });
-    this.username = this.loginForm.controls['telephone'];
+    this.username = this.loginForm.controls['username'];
     this.password = this.loginForm.controls['password'];
-    this.code = this.loginForm.controls['code'];
+    this.captcha_code = this.loginForm.controls['captcha_code'];
   }
 
   ionViewDidLoad() {
-    console.log()
+    this.callback = this.navParams.get('callback');
     this.getcode();
-
   }
 
   disMiss() {
-    this.viewCtrl.dismiss();
-  }
+    if (this.callback) {
+      this.callback().then(() => {
+        this.navCtrl.pop();
+      });
+    } else {
+      this.navCtrl.pop();
+    }
+  };
 
   login(data) {
-    this.userServe.login(data).then((data)=>{
-      console.log(data);
-      localStorage.setItem('userid',7378);
+    this.userServe.login(data).then(data1 => {
+
+      if (data1.id) {
+
+        localStorage.setItem('userid', data1.id)
+        this.disMiss();
+
+      } else {
+        this.presentToast(data1.message);
+        this.getcode();
+      }
     });
-    console.log(this.loginForm);
-    this.viewCtrl.dismiss()
-    this.navCtrl.push()
   }
+
   getcode() {
-
     this.userServe.getcode().then((data) => {
-
       this.codeImg = data.code;
-      console.log(data.code)
     })
   }
 
+  presentToast(message) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 1500,
+      position: 'middle'
+    });
+    toast.present();
+  }
 
 }

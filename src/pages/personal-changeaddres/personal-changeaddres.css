@@ -18,7 +18,8 @@ page-personal-changeaddres {
     border-left: 0;
     border-right: 0;
     margin-top: 10px;
-    word-spacing: 1px; }
+    word-spacing: 1px;
+    background-color: white; }
   page-personal-changeaddres .ads-icon {
     display: flex;
     text-align: center;

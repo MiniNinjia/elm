@@ -27,9 +27,13 @@
         <span class="left">联系人</span>
       </ion-col>
       <ion-col col-8>
-        <input type="text" class="right _border-bottom" placeholder="你的名字">
-        <span class="sex"><ion-icon name="md-checkmark-circle"></ion-icon>先生</span>
-        <span class="sex"><ion-icon name="md-checkmark-circle"></ion-icon>女士</span>
+        <input type="text" class="right _border-bottom" placeholder="你的名字" [(ngModel)]="postData.name">
+        <span class="sex"><ion-icon name="md-checkmark-circle"
+                                    (click)="selsex('1')"
+                                    [style.color]="postData.sex=='1'?'#4cd964':'#f5f5f5'"></ion-icon>先生</span>
+        <span class="sex"><ion-icon name="md-checkmark-circle"
+                                    (click)="selsex('0')"
+                                    [style.color]="postData.sex=='1'?'#f5f5f5':'#4cd964'"></ion-icon>女士</span>
       </ion-col>
     </ion-row>
     <ion-row class="_border-bottom">
@@ -37,7 +41,7 @@
         <span class="left">联系电话</span>
       </ion-col>
       <ion-col col-8>
-        <input type="text" class="right" placeholder="你的手机号">
+        <input type="text" class="right" placeholder="你的手机号" [(ngModel)]="postData.phone">
       </ion-col>
     </ion-row>
     <ion-row class="_border-bottom">
@@ -45,8 +49,9 @@
         <span class="left">送餐地址</span>
       </ion-col>
       <ion-col col-8>
-        <input type="text" class="right _border-bottom" placeholder="点击选择地址">
-        <input type="text" class="right" placeholder="详细地址（如门牌号等）">
+        <input type="text" class="right _border-bottom" (click)="sel_address()" placeholder="点击选择地址"
+               [(ngModel)]="postData.address">
+        <input type="text" class="right" placeholder="详细地址（如门牌号等）" [(ngModel)]="postData.address_detail">
       </ion-col>
     </ion-row>
     <ion-row class="_border-bottom">
@@ -54,8 +59,9 @@
         <span class="left">标签</span>
       </ion-col>
       <ion-col col-8>
-        <input type="text" class="right" placeholder="无/家/学校/公司">
+        <input type="text" class="right" placeholder="无/家/学校/公司" [(ngModel)]="postData.tag">
       </ion-col>
     </ion-row>
+    <button ion-button full style="color:white;background-color: #4cd964" (click)="add()">确定</button>
   </ion-grid>
 </ion-content>

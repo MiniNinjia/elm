@@ -1,26 +1,28 @@
 page-onlinepay {
-.lasttime{
-  text-align: center;
-  margin-top: 40px;
-}
-  .time{
+  .lasttime {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .time {
     font-size: 3em;
     text-align: center;
   }
-.yes{
-  padding-top: 16px;
-  //color: #6fd700;
-  font-size: 2em;
-  margin-right: 16px;
-
-}
-
-  .grid{
+  .yes {
+    padding-top: 16px;
+    color: #6fd700;
+    font-size: 2em;
+    margin-right: 16px;
+  }
+  .no {
+    padding-top: 16px;
+    color: #f5f5f5;
+    font-size: 2em;
+    margin-right: 16px;
+  }
+  .grid {
     padding: 0;
   }
-  .paybtn{
-
-
+  .paybtn {
 
   }
 }

@@ -1,7 +1,5 @@
 import {ModalController, NavParams, ViewController, Item, NavController, Slides} from 'ionic-angular';
 import {ViewChild, Component} from '@angular/core';
-
-
 import {LoginPage} from "../login/login";
 import {ShopPage} from '../shop/shop'
 import {RegistPage} from "../regist/regist";
@@ -11,11 +9,12 @@ import {FoodsPage} from "../foods/foods";
 import {CityPage} from "../city/city";
 import {SearchPage} from '../search/search'
 import {TabsPage} from '../tabs/tabs'
-
 import 'rxjs/add/operator/toPromise';
 import {RestaurantListPage} from '../restaurant-list/restaurant-list';
 import {IndexServiceProvider} from '../../providers/index-service/index-service';
+import {CityServiceProvider} from '../../providers/city-service/city-service'
 @Component({
+
   selector: 'page-home',
   templateUrl: 'home.html',
 })
@@ -86,6 +85,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public modalCtrl: ModalController,
               public isp: IndexServiceProvider,
+              public csp: CityServiceProvider,
               public viewCtrl: ViewController) {
   }
 
@@ -98,10 +98,12 @@ export class HomePage {
     const profileModal = this.modalCtrl.create(RestaurantListPage, {item: item});
     profileModal.present();
   }
-
-
+  // ionViewDidEnter
   ionViewDidLoad() {
     this.address = JSON.parse(localStorage.getItem('address'));
+    if (!this.address) {
+      this.city();
+    }
     this.isp.index_entry((result) => {
       let data = JSON.parse(result._body);
       let arr = [];
@@ -171,7 +173,7 @@ export class HomePage {
 
   getData = () => {
     return new Promise((resolve, reject) => {
-      this.address =JSON.parse(localStorage.getItem('address'));
+      this.address = JSON.parse(localStorage.getItem('address'));
       resolve();
     });
   };

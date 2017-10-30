@@ -27,10 +27,12 @@
       </ion-col>
       <ion-col col-7 class="user">
         <ion-row class="user-name">
-          <ion-col>
+          <ion-col *ngIf="userData?.username">
             {{userData?.username}}
           </ion-col>
-
+          <ion-col *ngIf="!userData?.username">
+            登陆/注册
+          </ion-col>
         </ion-row>
         <ion-row>
           <ion-col style="font-size: .73em">
@@ -81,7 +83,7 @@
 
     <!--订单商城会员卡——————————————————————————————-->
     <ion-grid>
-    <ion-row style="margin-top: 5px;border: 0"  (click)="goOrder()">
+    <ion-row style="margin-top: 5px;border: 0" >
       <ion-item-sliding>
         <ion-item>
           <ion-avatar item-start class="card-ss" style=" text-align: center">
