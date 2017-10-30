@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController, ActionSheetController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ModalController,ViewController, ActionSheetController} from 'ionic-angular';
 import {AddToCartProvider} from '../../providers/add-to-cart/add-to-cart';
 import {UserServiceProvider} from '../../providers/user-service/user-service';
 import {SelAddressPage} from '../sel-address/sel-address'
@@ -11,6 +11,7 @@ import {
   transition,
   keyframes
 } from '@angular/animations';
+import {OnlinepayPage} from "../onlinepay/onlinepay";
 /**
  * Generated class for the PayPage page.
  *
@@ -50,6 +51,7 @@ export class PayPage {
               public viewCtrl: ViewController,
               public atcp: AddToCartProvider,
               public usp: UserServiceProvider,
+              public modalCtrl: ModalController,
               public actionSheetCtrl: ActionSheetController) {
 
   }
@@ -79,6 +81,12 @@ export class PayPage {
 
   selPay(bool) {
     this.selPayType = bool;
+  }
+  pay(){
+
+    let modelPage = this.modalCtrl.create(OnlinepayPage)
+    modelPage.present();
+
   }
 
   disMiss() {
