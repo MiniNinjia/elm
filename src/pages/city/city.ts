@@ -26,6 +26,7 @@ export class CityPage {
     group: []
   };
   id: any;
+  callback: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -36,7 +37,7 @@ export class CityPage {
 
   ionViewDidLoad() {
     this.id = localStorage.getItem('userid');
-    console.log(this.id);
+    this.callback = this.navParams.get('callback');
     this.fs.getcity('guess', (result) => {
       this.cityData.guess = JSON.parse(result._body);
       this.fs.getcity('hot', (result1) => {
@@ -59,9 +60,9 @@ export class CityPage {
     modelPage.present()
   }
 
-  goo() {
-    let modelPage = this.modalCtrl.create(CitydetailPage, {city: this.cityData.guess});
-    modelPage.present()
+  goo(item) {
+    localStorage.setItem('cityId', item.id);
+    this.navCtrl.push(CitydetailPage, {city: item, callback: this.getData1})
   }
 
   gologin() {
@@ -69,6 +70,19 @@ export class CityPage {
     modelPage.present()
   }
 
+  disMiss() {
+    this.callback().then(() => {
+      this.navCtrl.pop()
+    });
+  }
 
-
+  getData1 = (data) => {
+    return new Promise((resolve, reject) => {
+      console.log(data);
+      if (data) {
+        this.disMiss();
+      }
+      resolve();
+    });
+  };
 }
