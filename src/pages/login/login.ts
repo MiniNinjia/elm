@@ -4,7 +4,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {ToastController} from 'ionic-angular';
-// import { Storage } from '@ionic/storage';
+ //import { Storage } from '@ionic/storage';
 import {UserServiceProvider} from '../../providers/user-service/user-service'
 
 //
@@ -21,7 +21,7 @@ import {UserServiceProvider} from '../../providers/user-service/user-service'
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  // providers:[UsersService]
+   providers:[UserServiceProvider]
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -36,7 +36,7 @@ export class LoginPage {
               private toastCtrl: ToastController,
               private viewCtrl: ViewController,
               private formBuilder: FormBuilder,
-              private usp: UserServiceProvider) {
+              private userServe: UserServiceProvider) {
     this.loginForm = formBuilder.group({
       telephone: ['', Validators.compose([Validators.minLength(11), Validators.maxLength(11), Validators.required, Validators.pattern("^(13[0-9]|15[012356789]|17[03678]|18[0-9]|14[57])[0-9]{8}$")])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -49,22 +49,29 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log()
-    localStorage.setItem('userid','7378');
+    this.getcode();
 
-   // this.getcode();
   }
 
   disMiss() {
     this.viewCtrl.dismiss();
   }
 
-  login() {
-    console.log(this.loginForm)
+  login(data) {
+    this.userServe.login(data).then((data)=>{
+      console.log(data);
+      localStorage.setItem('userid',7378);
+    });
+    console.log(this.loginForm);
+    this.viewCtrl.dismiss()
+    this.navCtrl.push()
   }
-
   getcode() {
-    this.usp.getcode().then((data) => {
-      this.codeImg = data;
+
+    this.userServe.getcode().then((data) => {
+
+      this.codeImg = data.code;
+      console.log(data.code)
     })
   }
 

@@ -7,8 +7,8 @@ import {HomePage}from'../../pages/home/home'
 import {ContactPage}from'../../pages/contact/contact'
 import {PersonalServePage}from'../../pages/personal-serve/personal-serve'
 import {PersonalChangeaddresPage}from'../personal-changeaddres/personal-changeaddres'
-
-
+import {LoginPage}from'../../pages/login/login'
+import { Storage } from '@ionic/storage';
 import {UserServiceProvider}from'../../providers/user-service/user-service'
 /**
  * Generated class for the PersonalPage page.
@@ -25,6 +25,7 @@ import {UserServiceProvider}from'../../providers/user-service/user-service'
 })
 export class PersonalPage {
   userData:any;
+  uid:any
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private viewCtrl:ViewController,
@@ -35,9 +36,15 @@ export class PersonalPage {
   }
 
   ionViewDidLoad() {
-    this.userSer.getUsermessage(7527).then((data) => {
-      this.userData=data;
-    })
+    this.uid=localStorage.getItem('userid');
+    if(this.uid){
+      this.userSer.getUsermessage(this.uid).then((data) => {
+        this.userData=data;
+      })
+    }
+    else {
+      this.navCtrl.push(LoginPage);
+    }
   };
 goto(){
   this.navCtrl.push(TabsPage);
@@ -55,10 +62,7 @@ goto(){
 
     modelPage.present();
   }
-  goUserMes(umane) {
-    // this.viewCtrl.dismiss();
-    // item && this.navCtrl.push(PostDetailPage,{"post_id":item.postId});
-    // this.appCtrl.getRootNav().push(PostDetailPage);
+  goUserMes() {
 
     let modelPage=this.modalCtrl.create(PersonalMessagePage,{udata:this.userData});
     modelPage.onDidDismiss(() => {

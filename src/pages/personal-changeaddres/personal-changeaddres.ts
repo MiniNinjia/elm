@@ -18,26 +18,24 @@ import {from} from "rxjs/observable/from";
   providers: [UserServiceProvider]
 })
 export class PersonalChangeaddresPage {
-  udata: any;
-  uid: any;
-  uaddres: any;
-  cityid: any
-
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public viewCtrl: ViewController,
-              private userSer: UserServiceProvider) {
+  udata:any;
+  uid:any;
+  uaddres:any;
+  cityid:any;
+  flag = true;
+  constructor(public navCtrl:NavController,
+              public navParams:NavParams,
+              public viewCtrl:ViewController,
+              private userSer:UserServiceProvider) {
   }
 
   ionViewDidLoad() {
     this.udata = this.navParams.get('udata');
-    this.uid = this.udata.id;
-    this.userSer.getUseraddress(this.uid).then((data) => {
+    console.log(this.udata);
+    this.userSer.getUseraddress(this.udata.user_id).then((data) => {
       this.uaddres = data;
-      this.cityid = this.uaddres[0].city_id;
-      console.log(data);
+      console.log(this.uaddres)
     });
-    console.log('ionViewDidLoad PersonalChangeaddresPage');
   }
 
   goto() {
@@ -45,6 +43,27 @@ export class PersonalChangeaddresPage {
   }
 
   goaddadrs() {
-    this.navCtrl.push(PersonalAddadresPage, {cid: this.cityid, uid: this.uid})
+    this.uid = this.udata.id;
+    console.log(this.uid);
+    this.cityid = this.uaddres[0].city_id;
+    this.navCtrl.push(PersonalAddadresPage, {cid: this.cityid, uadres: this.uaddres,callback:this.getdata})
   }
+
+  over() {
+    this.flag = !this.flag
+  }
+
+  deladre(i) {
+    this.userSer.deladdres(this.udata.id, this.uaddres[i].id).then((data)=> {
+      this.uaddres.splice(i, 1);
+      console.log(data);
+    });
+  }
+  getdata=()=>{
+    return new Promise((resolve,reject)=>{
+
+      resolve();
+    })
+  }
+
 }

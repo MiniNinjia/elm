@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class GlobleServiceProvider {
   serverUrl = 'http://cangdu.org:8001';
-  uploadUrl = 'http://images.cangdu.org';
+  uploadUrl = 'http://images.cangdu.org:8001';
   constructor(public http: Http) {
   }
 
