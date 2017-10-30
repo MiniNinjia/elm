@@ -15,6 +15,8 @@ import {TabsPage} from '../tabs/tabs'
   templateUrl: 'onlinepay.html',
 })
 export class OnlinepayPage {
+  choIndex = 0;
+  choIndex1 = 0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

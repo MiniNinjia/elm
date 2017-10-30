@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams,ViewController,ModalController } from 'ionic-angular';
 import {TabsPage}from'../../pages/tabs/tabs'
 import {from} from "rxjs/observable/from";
 import {PersonalMessagePage}from'../../pages/personal-message/personal-message'
@@ -7,8 +7,8 @@ import {HomePage}from'../../pages/home/home'
 import {ContactPage}from'../../pages/contact/contact'
 import {PersonalServePage}from'../../pages/personal-serve/personal-serve'
 import {PersonalChangeaddresPage}from'../personal-changeaddres/personal-changeaddres'
-
-
+import {LoginPage}from'../../pages/login/login'
+import { Storage } from '@ionic/storage';
 import {UserServiceProvider}from'../../providers/user-service/user-service'
 /**
  * Generated class for the PersonalPage page.
@@ -21,7 +21,7 @@ import {UserServiceProvider}from'../../providers/user-service/user-service'
 @Component({
   selector: 'page-personal',
   templateUrl: 'personal.html',
-  providers: [UserServiceProvider]
+  providers:[UserServiceProvider]
 })
 export class PersonalPage {
   userData: any;
@@ -38,10 +38,15 @@ export class PersonalPage {
   ionViewDidLoad() {
     this.uid = localStorage.getItem('userid');
     this._lenght = this.navCtrl.length();
-    console.log(this._lenght)
-    this.userSer.getUsermessage(this.uid).then((data) => {
-      this.userData = data;
-    })
+
+    if(this.uid){
+      this.userSer.getUsermessage(this.uid).then((data) => {
+        this.userData=data;
+      })
+    }
+    else {
+      this.navCtrl.push(LoginPage);
+    }
   };
 
   goto() {
@@ -60,8 +65,8 @@ export class PersonalPage {
 
     modelPage.present();
   }
+  goUserMes() {
 
-  goUserMes(umane) {
     let modelPage = this.modalCtrl.create(PersonalMessagePage, {udata: this.userData});
     modelPage.onDidDismiss(() => {
       console.log('hfjkh');
