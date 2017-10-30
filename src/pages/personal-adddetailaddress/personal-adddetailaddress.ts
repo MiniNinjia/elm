@@ -15,47 +15,41 @@ import {PersonalAddadresPage}from'../personal-addadres/personal-addadres'
   templateUrl: 'personal-adddetailaddress.html',
 })
 export class PersonalAdddetailaddressPage {
-cid:any;
+  cid:any;
   addres:any
-  flag=0;
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  flag = 0;
+
+  constructor(public navCtrl:NavController,
+              public navParams:NavParams,
               public viewCtrl:ViewController,
               public modalCtrl:ModalController,
               private userSer:UserServiceProvider) {
   }
 
   ionViewDidLoad() {
-    this.cid=this.navParams.get('cityid');
-    this.flag=0;
-    //console.log(this.cid);
-    //console.log('ionViewDidLoad PersonalAdddetailaddressPage');
+    this.cid=localStorage.getItem('cityid') || null;
+    this.flag = 0;
   }
-  goto(){
+
+  goto() {
     this.viewCtrl.dismiss();
   }
-  searchads(ads){
-   if(ads){
-     this.userSer.getsearchaddress(this.cid,ads).then((data)=>{
-       this.addres=data;
-       //console.log(this.addres);
-     });  this.flag=1;
-   }
-    else{
-     this.flag=0
-   }
+
+  searchads(ads) {
+    if (ads) {
+      this.userSer.getsearchaddress(this.cid, ads).then((data)=> {
+        this.addres = data;
+        console.log(this.cid);
+      });
+      this.flag = 1;
+    }
+    else {
+      this.flag = 0
+    }
   }
-  goaddres(i){
-    //this.navCtrl.push(PersonalAddadresPage);
-    //console.log(i);
-    let modelPage=this.modalCtrl.create(PersonalAddadresPage,{adsname:this.addres[i]});
-    modelPage.onDidDismiss(() => {
-    });
 
-    modelPage.present();
-
-
-    //this.navCtrl.pop({adsname:adsna});
+  goaddres(i) {
+    this.viewCtrl.dismiss({adsname: this.addres[i]})
   }
 
 }

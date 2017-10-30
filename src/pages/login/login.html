@@ -22,6 +22,7 @@
   <ion-row>
     <ion-col col-12>
       <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" novalidate>
+
         <ion-item [class.error]="!username.valid && username.touched">
           <ion-input type="text" placeholder="用户名" [formControl]="username" clearInput=true></ion-input>
         </ion-item>
@@ -37,10 +38,17 @@
         <ion-label *ngIf="password.hasError('required') && password.touched" class="error-message">* 请输入密码</ion-label>
         <ion-label *ngIf="(password.hasError('minlength')) && password.touched" class="error-message">* 密码长度最少为六位
         </ion-label>
-        <ion-item>
-          <ion-input type="number" [formControl]="code"></ion-input>
-          <img src="{{codeImg}}" (click)="getcode()">
-        </ion-item>
+        <ion-row style="border-bottom: 1px solid rgba(192, 192, 192, 0.71);margin-left: 15px">
+          <ion-col col-10>
+            <ion-input type="number" [formControl]="code"></ion-input>
+          </ion-col>
+          <ion-col col-2 style="font-size:3em">
+            <img src="{{codeImg}}" (click)="getcode()">
+          </ion-col>
+
+        </ion-row>
+        <button ion-button full color="secondary" type="submit" [disabled]="!loginForm.valid">登陆</button>
+
       </form>
     </ion-col>
   </ion-row>
@@ -51,7 +59,6 @@
     注册过的用户可凭账号密码登录
   </p>
   <div padding>
-    <button ion-button full color="secondary" type="submit" [disabled]="!loginForm.valid" (click)="login()">登陆</button>
   </div>
   <p style="text-align: right;color: #7d9fdd">重置密码？</p>
   <!--<ion-footer >-->

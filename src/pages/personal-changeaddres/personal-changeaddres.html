@@ -6,46 +6,32 @@
 -->
 
 <ion-content style="background-color: #f5f5f5">
-<ion-row style="background-color: #3291e8 ;color: white;padding: 5px 0">
-  <ion-col col-1 class="ion-back">
-    <ion-icon class="ads " name="ios-arrow-back" style="font-size: 1.15em" (click)="goto()"></ion-icon>
-  </ion-col>
-  <ion-col col-8 class="ads">编辑地址</ion-col>
-  <ion-col col-3 class="ads ">
-    <span >编辑</span>
-    <span >完成</span>
-  </ion-col>
-</ion-row>
+  <ion-row style="color: white;background-color: #0d81ff; padding: 5px 0">
+    <ion-col col-1 class="ion-back">
 
-  <ion-row class="word" *ngFor="let item of uaddres ;let i=index">
+      <ion-icon class="ads " name="ios-arrow-back" style="font-size: 1.15em" (click)="goto()"></ion-icon>
+    </ion-col>
+    <ion-col col-8 class="ads">编辑地址</ion-col>
+    <ion-col col-3 class="ads " (click)="over()">
+      <span *ngIf="flag===true">编辑</span>
+      <span *ngIf="flag===false">完成</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="word" *ngFor="let item of uaddres;let i=index">
+
     <ion-col col-12>
-      <ion-row style=" background-color:white;" *ngIf="i===0">
-      <ion-col col-11 >
-      <ion-row class="ads-w">{{uaddres[i]?.address}}</ion-row>
-      <ion-row class="ads-w">{{uaddres[i]?.phone}}</ion-row>
-    </ion-col>
-    <ion-col col-1 class="ads-icon">
-      <ion-icon name="ios-close" ></ion-icon>
-    </ion-col>
-      </ion-row>
-
-
-
-      <ion-row style=" background-color:#f5f5f5;" *ngIf="!i==0">
-        <ion-col col-11 >
+      <ion-row [style.background-color]="i?'white':'#fff8c3'">
+        <ion-col col-11>
           <ion-row class="ads-w">{{uaddres[i]?.address}}</ion-row>
           <ion-row class="ads-w">{{uaddres[i]?.phone}}</ion-row>
         </ion-col>
         <ion-col col-1 class="ads-icon">
-          <ion-icon name="ios-close" ></ion-icon>
+          <ion-icon name="ios-close" *ngIf="flag===false" (click)="deladre(i)"></ion-icon>
         </ion-col>
       </ion-row>
-
     </ion-col>
-
-
   </ion-row>
-
   <ion-row class="add" (click)="goaddadrs()">
 
     <ion-item-sliding>
@@ -54,7 +40,7 @@
           <ion-col col-3 class="pword">
             新增地址
           </ion-col>
-          <ion-col col-8 >
+          <ion-col col-8>
 
           </ion-col>
           <ion-col col-1>

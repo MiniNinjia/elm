@@ -5,6 +5,7 @@ import {FileUploader} from 'ng2-file-upload';
 import {PersonalChangeaddresPage}from'../personal-changeaddres/personal-changeaddres'
 import {PersonalPasswordPage}from'../personal-password/personal-password'
 import {PersonalNamePage}from'../personal-name/personal-name'
+import {UserServiceProvider}from'../../providers/user-service/user-service'
 import {from} from "rxjs/observable/from";
 /**
  * Generated class for the PersonalMessagePage page.
@@ -23,11 +24,11 @@ export class PersonalMessagePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private viewCtrl:ViewController,
-              public modalCtrl:ModalController) {
+              public modalCtrl:ModalController,
+              private userSer: UserServiceProvider) {
   }
   uploadimg = null;
   udata:string;
-  imgurl:string='http://cangdu.org:8001/v1/addimg/:type';
   //uploader: FileUploader = new FileUploader({
   //  url: this.imgurl + '/upload',
   //  method: 'POST',
@@ -44,28 +45,24 @@ export class PersonalMessagePage {
     this.viewCtrl.dismiss();
   }
   goChangeName(){
- this.navCtrl.push(PersonalNamePage,{udat:this.udata})
+ this.navCtrl.push(PersonalNamePage)
   }
   goChangeAdress(){
     this.navCtrl.push(PersonalChangeaddresPage,{udata:this.udata});
 
   }
+
   goChangePas(){
     this.navCtrl.push(PersonalPasswordPage);
   }
-  showPreview() {
-//    console.log(this.uploader.queue[0]);
-//  const that = this;
-//  // 这里是文件选择完成后的操作处理
-//  this.uploader.queue[0].onSuccess = (response, status, headers) => {
-//  if (status === 200) {
-//    that.uploadimg = JSON.parse(response).link;
-//  } else {
-//
-//  }
-//  that.uploader.clearQueue();
-//};
-//  this.uploader.queue[0].upload(); // 开始上传
-}
+  goout(){
+    this.userSer.singout().then((data)=>data);
+    console.log('guhtuih')
+    console.log('hfjhjkdsf')
+  }
+  singoutall(){
+
+  }
+
 
 }
