@@ -56,8 +56,7 @@ export class CityPage {
   }
 
   gopersonel() {
-    let modelPage = this.modalCtrl.create(PersonalPage);
-    modelPage.present()
+    this.navCtrl.push(PersonalPage)
   }
 
   goo(item) {
@@ -67,14 +66,14 @@ export class CityPage {
 
   gologin() {
     let modelPage = this.modalCtrl.create(LoginPage);
-    modelPage.present()
+    modelPage.present();
   }
 
   disMiss() {
     this.callback().then(() => {
-      this.navCtrl.pop()
+      this.navCtrl.pop();
     });
-  }
+  };
 
   getData1 = (data) => {
     return new Promise((resolve, reject) => {
@@ -84,5 +83,5 @@ export class CityPage {
       }
       resolve();
     });
-  };
+  }
 }

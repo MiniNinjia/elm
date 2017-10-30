@@ -1,5 +1,12 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ModalController,ViewController, ActionSheetController} from 'ionic-angular';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController,
+  ViewController,
+  ActionSheetController
+} from 'ionic-angular';
 import {AddToCartProvider} from '../../providers/add-to-cart/add-to-cart';
 import {UserServiceProvider} from '../../providers/user-service/user-service';
 import {SelAddressPage} from '../sel-address/sel-address'
@@ -45,6 +52,8 @@ export class PayPage {
   fapiao = '不需要开发票'
   userid: any;
   _Address: any;
+  _data: any;
+  _id: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -57,16 +66,16 @@ export class PayPage {
   }
 
   ionViewDidLoad() {
-    let data = this.navParams.get('data');
-    let id = this.navParams.get('id');
+    this._data = this.navParams.get('data');
+    this._id = this.navParams.get('id');
     ////////////////////////////////////////////////////
     localStorage.setItem('userid', '7378');
     this.userid = localStorage.getItem('userid');
     let postdata = {
       come_from: 'web',
-      restaurant_id: id,
-      geohash: "31.2751,120.74191",
-      entities: [data]
+      restaurant_id: this._id,
+      geohash: JSON.parse(localStorage.getItem('address')).geohash,
+      entities: [this._data]
     };
 
     this.atcp.checkout(postdata).then((result) => {
@@ -76,17 +85,26 @@ export class PayPage {
     this.usp.getUseraddress(this.userid).then((data) => {
       this.address = data;
       this._Address = this.address[0];
+      console.log(this._Address)
     })
   }
 
   selPay(bool) {
     this.selPayType = bool;
   }
-  pay(){
 
-    let modelPage = this.modalCtrl.create(OnlinepayPage)
+  pay() {
+    let data = {
+      user_id: this.userid,
+      cart_id: this.result.id,
+      address_id: this._Address.id,
+      restaurant_id: this._id,
+      geohash: this._Address.st_geohash,
+      description: "",
+      entities: [this._data],
+    };
+    let modelPage = this.modalCtrl.create(OnlinepayPage, {data: data})
     modelPage.present();
-
   }
 
   disMiss() {

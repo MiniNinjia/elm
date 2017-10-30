@@ -25,21 +25,20 @@ import {UserServiceProvider}from'../../providers/user-service/user-service'
 })
 export class PersonalPage {
   userData: any;
-  lenght:any;
-  uid:any;
+  _lenght: any;
+  uid: any;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private viewCtrl: ViewController,
               public modalCtrl: ModalController,
               private userSer: UserServiceProvider) {
-
-
   }
 
   ionViewDidLoad() {
-    this.uid=localStorage.getItem('userid');
-    console.log(this.uid);
-    this.lenght=this.navCtrl.length();
+    this.uid = localStorage.getItem('userid');
+    this._lenght = this.navCtrl.length();
+    console.log(this._lenght)
     this.userSer.getUsermessage(this.uid).then((data) => {
       this.userData = data;
     })

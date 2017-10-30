@@ -49,6 +49,7 @@ import {RestaurantProvider} from '../providers/restaurant/restaurant';
 import {IndexServiceProvider} from '../providers/index-service/index-service';
 import {SearchProvider} from '../providers/search/search';
 import {AddToCartProvider} from '../providers/add-to-cart/add-to-cart';
+import {CookieService} from 'angular2-cookie/services/cookies.service';
 
 import {MyComponent} from '../components/my/my';
 import {RestaurantComponent} from '../components/restaurant/restaurant';
@@ -91,6 +92,7 @@ import {CityServiceProvider} from '../providers/city-service/city-service';
     OrderdetailPage,
     PersonalAdddetailaddressPage,
     OnlinepayPage,
+
   ],
   imports: [
     BrowserModule,
@@ -150,8 +152,9 @@ import {CityServiceProvider} from '../providers/city-service/city-service';
     UserServiceProvider,
     ExplainServiceProvider,
     GlobleServiceProvider,
-    RestaurantProvider,
 
+    RestaurantProvider,
+    CookieService,
     RestaurantProvider,
     IndexServiceProvider,
     SearchProvider,

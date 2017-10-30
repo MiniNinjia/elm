@@ -21,4 +21,8 @@ export class AddToCartProvider {
   checkout(data): Promise<any> {
     return this.http.post(this._url + '/v1/carts/checkout', data).toPromise().then(response => response);
   };
+
+  order(data): Promise<any> {
+    return this.http.post(this._url + '/v1/users/' + data.user_id + '/carts/' + data.cart_id + '/orders', data).toPromise().then(responese => responese)
+  }
 }

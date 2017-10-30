@@ -3,7 +3,7 @@ import {Http} from '@angular/http';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {GlobleServiceProvider} from '../globle-service/globle-service'
 import 'rxjs/add/operator/map';
-
+import {CookieService} from 'angular2-cookie/services/cookies.service';
 
 /*
  Generated class for the UserServiceProvider provider.
@@ -17,7 +17,8 @@ export class UserServiceProvider {
   _url = this.glo.serverUrl;
 
   constructor(private http: HttpClient,
-              public glo: GlobleServiceProvider) {
+              private _cookieService: CookieService,
+              public glo: GlobleServiceProvider,) {
     console.log('Hello UserServiceProvider Provider');
   }
 
@@ -35,19 +36,15 @@ export class UserServiceProvider {
   }
 
 
-
 //  修改用户密码
   changePassword(passdata): Promise<any> {
-    return this.http.post(this._url + '/v2/changepassword', passdata).toPromise().then((data) => data)
+    return this.http.post(this._url + '/v2/changepassword', passdata, {withCredentials: true}).toPromise().then((data) => data)
   }
 
-
-  //获取验证码
-  // getcode(): Promise<any> {
-  //   return this.http.post(this._url + '/v1/captchas').toPromise().then((data) => data)
-  // }
   getcode(): Promise<any> {
-    return this.http.post(this._url + '/v1/captchas',{}).toPromise().then((data) => data)
+    return this.http.post(this._url + '/v1/captchas', {}, {withCredentials: true}).toPromise().then((data) => {
+      return data
+    })
   }
 
 
@@ -59,7 +56,12 @@ export class UserServiceProvider {
 //  添加收货地址
 //  http://cangdu.org:8001/v1/users/:user_id/addresses
   addadres(id) {
-    return this.http.post(this._url + '/v1/users/',{} + id + '/addresses').toPromise().then((data) => data)
+    return this.http.post(this._url + '/v1/users/', {} + id + '/addresses').toPromise().then((data) => data)
+  }
+
+  getOrderList(userid, offset) {
+
+    return this.http.get(this._url + '/bos/v2/users/' + userid + '/orders?limit=10&offset=' + offset).toPromise().then((data) => data)
 
   }
 

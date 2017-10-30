@@ -22,15 +22,11 @@ export class TabsPage {
 
   constructor(private navParma: NavParams) {
 
-
   }
 
   ionViewDidEnter() {
-    let tabsId =this.navParma.get('tabsId');
-    console.log(tabsId)
-    tabsId || (tabsId =0);
-    console.log(tabsId)
+    let tabsId = this.navParma.get('tabsId');
+    tabsId || (tabsId = 0);
     this.tabRef.select(tabsId);
   }
-
 }

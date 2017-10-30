@@ -1,0 +1,20 @@
+page-onlinepay .lasttime {
+  text-align: center;
+  margin-top: 40px; }
+page-onlinepay .time {
+  font-size: 3em;
+  text-align: center; }
+page-onlinepay .yes {
+  padding-top: 16px;
+  color: #6fd700;
+  font-size: 2em;
+  margin-right: 16px; }
+page-onlinepay #no {
+  padding-top: 16px;
+  color: #9c9c9c;
+  font-size: 2em;
+  margin-right: 16px; }
+page-onlinepay .grid {
+  padding: 0; }
+
+/*# sourceMappingURL=onlinepay.css.map */

@@ -2,9 +2,9 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <button (click)="disMiss()" style="font-size: 20px;background-color: transparent;color: white">
-          <ion-icon name="ios-arrow-back"></ion-icon>
-        </button>
+        <!--<button (click)="disMiss()" style="font-size: 20px;background-color: transparent;color: white">-->
+          <!--<ion-icon name="ios-arrow-back"></ion-icon>-->
+        <!--</button>-->
       </ion-col>
       <ion-col col-4 id="shoptitle">订单列表</ion-col>
       <ion-col col-4></ion-col>
@@ -13,67 +13,37 @@
   </ion-grid>
 </ion-header>
 <ion-content>
-  <ion-grid>
+  <ion-grid style="margin-bottom: 1em;border-bottom: 1px solid #999" *ngFor="let item of data">
     <ion-row style="padding-top: 10px">
       <ion-col col-2>
-        <img src="http://cangdu.org:8001/img/15e386ec1875697.jpeg" class="restaurant_image">
-        <!--<img class="orderimg" src="../../assets/img/cart_nothing.png">-->
+        <img src="http://cangdu.org:8001/img/{{item?.restaurant_image_url}}" class="restaurant_image">
       </ion-col>
       <ion-col col-10 class="line1">
-        <span class="ordertitle">效果演示
-        <button style="" class="jump" (click)="jump()">
+        <span class="ordertitle">{{item?.restaurant_name}}
+        <button style="" class="jump" (click)="jump(item?.id)">
           <ion-icon name="arrow-forward"></ion-icon>
-        </button></span>
-        <span class="wait"> 等待支付</span>
-        <div class="time">2017-10-29 10:38</div>
+        </button>
+        </span>
+        <span class="wait"> {{item?.status_bar.title}}</span>
+        <div class="time">{{item?.formatted_created_at}}</div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-2></ion-col>
       <ion-col col-10 class="line2">
-        <span class="ordertitle1">四川火锅&nbsp;&nbsp;&nbsp;</span>
-        <span class="count">等2件商品</span>
-        <span class="money"> ¥1616.00</span>
+        <span class="ordertitle1">{{item?.basket?.group[0][0]?.name}}&nbsp;&nbsp;&nbsp;</span>
+        <span class="count" *ngIf="item?.total_quantity==1">{{item?.total_quantity}}件商品</span>
+        <span class="count" *ngIf="item?.total_quantity>1">等{{item?.total_quantity}}件商品</span>
+        <span class="money"> ¥{{item?.total_amount}}</span>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-2></ion-col>
       <ion-col col-10 class="nothing">
-        <div class="btn" style="">
-          <span>去支付（还剩01分52秒)</span>
+        <div class="btn" *ngIf="item?.status_bar?.title=='等待支付'">
+          <span>去支付 （还剩<span *ngIf="item?.Minutes<10">0</span>{{item?.Minutes}}分 <span *ngIf="item?.Seconds<10">0</span> {{item?.Seconds}}秒) </span>
         </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-item-divider></ion-item-divider>
-
-  <ion-grid>
-    <ion-row style="padding-top: 10px">
-      <ion-col col-2>
-        <img src="http://cangdu.org:8001/img/15e386ec1875697.jpeg" class="restaurant_image">
-        <!--<img class="orderimg" src="../../assets/img/cart_nothing.png">-->
-      </ion-col>
-      <ion-col col-10 class="line1">
-        <span class="ordertitle">效果演示
-        <button style="" class="jump" (click)="jump()">
-          <ion-icon name="arrow-forward"></ion-icon>
-        </button></span>
-        <span class="wait">支付超时</span>
-        <div class="time">2017-10-29 10:38</div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-2></ion-col>
-      <ion-col col-10 class="line2">
-        <span class="ordertitle1">四川火锅&nbsp;&nbsp;&nbsp;</span>
-        <span class="count">等2件商品</span>
-        <span class="money"> ¥1616.00</span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-2></ion-col>
-      <ion-col col-10 class="nothing">
-        <div id="btn1">
+        <div class="btn1" *ngIf="item?.status_bar?.title=='支付超时'">
           <span>再来一单</span>
         </div>
       </ion-col>
