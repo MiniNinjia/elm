@@ -77,8 +77,7 @@ export class PersonalAddadresPage {
   }
 
   _addres() {
-    addres = [
-    ];
+
     this.geohash = this.adsname.name;
     this.sex = 1;
     this.tag='家'
