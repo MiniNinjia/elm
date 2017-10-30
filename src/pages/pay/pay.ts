@@ -20,6 +20,7 @@ import {
   keyframes
 } from '@angular/animations';
 import {OnlinepayPage} from "../onlinepay/onlinepay";
+import {OrderremarkPage} from "../orderremark/orderremark";
 import {LoginPage} from '../login/login'
 /**
  * Generated class for the PayPage page.
@@ -125,6 +126,13 @@ export class PayPage {
 
   disMiss() {
     this.viewCtrl.dismiss();
+  }
+
+  orderRemark(){
+
+    let modelPage = this.modalCtrl.create(OrderremarkPage)
+    modelPage.present();
+
   }
 
   selAddress() {

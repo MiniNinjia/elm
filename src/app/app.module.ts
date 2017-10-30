@@ -41,6 +41,7 @@ import {CitydetailPage} from '../pages/citydetail/citydetail'
 import {OrderdetailPage} from '../pages/orderdetail/orderdetail'
 import {PersonalAdddetailaddressPage} from '../pages/personal-adddetailaddress/personal-adddetailaddress'
 import {OnlinepayPage} from '../pages/onlinepay/onlinepay'
+import {OrderremarkPage} from '../pages/orderremark/orderremark'
 import {FoodServiceProvider} from '../providers/food-service/food-service';
 import {GlobleServiceProvider} from '../providers/globle-service/globle-service';
 import {ExplainServiceProvider} from '../providers/explain-service/explain-service';
@@ -92,6 +93,7 @@ import {CityServiceProvider} from '../providers/city-service/city-service';
     OrderdetailPage,
     PersonalAdddetailaddressPage,
     OnlinepayPage,
+    OrderremarkPage,
 
   ],
   imports: [
@@ -142,7 +144,7 @@ import {CityServiceProvider} from '../providers/city-service/city-service';
     OrderdetailPage,
     PersonalAdddetailaddressPage,
     OnlinepayPage,
-
+    OrderremarkPage,
   ],
   providers: [
     StatusBar,
